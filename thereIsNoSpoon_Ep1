@@ -3,47 +3,46 @@
  **/
 const width = parseInt(readline()); // the number of cells on the X axis
 const height = parseInt(readline()); // the number of cells on the Y axis
+//Create a table with all element. We will acces with table[i][j]
 let table = [];
-// let tableResultat = [];
 for (let i = 0; i < height; i++) {
     const line = readline(); // width characters, each either 0 or .
     table.push(line);
 }
-console.error('table = ' + table)
-for (let i = 0; i < table.length; i++) {
-    for (let j = 0; j < table[i].length; j++) {
-        console.error('évaluation de ' + j + ' '+i);
+//analyse each element of the table
+for (let i = 0; i < table.length; i++) { 
+    for (let j = 0; j < table[i].length; j++) {       
+        //when a 0 is find
         if (table[i][j] == '0') {
-            let resultat = j + ' ' + i + ' ';
-            let a = j + 1;
-            let b = i + 1;
-            console.error('resultat 1 = ' + resultat)
-            if (table[i][a] == '0') {
-                resultat += a + ' ' + i + ' ';
-                console.error('resultat 2 = ' + resultat);
-            } else if (a == table[i].length || table[i][a] !== '0') {
-                resultat += '-1 -1 ';
-                console.error('resultat 2 = ' + resultat);
-            } else  {
-                console.error('erreur sur i & j+1');
-                console.error('resultat 2 = ' + resultat);
+            //create a string for the answer
+            let result = j + ' ' + i + ' ';
+            // find the nearest neighbor to the right
+                //create a table with only the right's neighbor on the same line
+            let tableVR = [];
+            for (let a = j+1 ; a < table[i].length ; a++) {
+                tableVR.push(table[i][a]);
             }
-            
-            if (table[b][j] == '0'){
-                resultat += j + ' ' + b + ' ';
-                console.error('resultat 3 = ' + resultat);
-            } else if (b == table.length || table[b][j] !== '0') {
-                resultat += '-1 -1 ';
-                console.error('resultat 3 = ' + resultat);
+                //check the table
+            if (tableVR.indexOf('0') == -1) {
+                result += '-1 -1 ';
             } else {
-                console.error('erreur sur i+1 & j');
-                console.error('resultat 3 = ' + resultat);
+                let VR = j + 1 + tableVR.indexOf('0');
+                result += VR+' '+i+' ';
             }
-            console.log(resultat);
-            // tableResultat.push(resultat);
-        } else {
-            console.error(j +' '+i+' n\'existe pas');
-        }  
+            // find the nearest neighbor to the bottom
+                //same way..
+            let tableVB = [];
+            for (let a = i+1 ; a < table.length ; a++) {
+                tableVB.push(table[a][j]);
+            }
+            if (tableVB.indexOf('0') == -1) {
+                result += '-1 -1';
+            } else {
+                let VB = i + 1 + tableVB.indexOf('0');
+                result += j+' '+VB+' ';
+            }
+            // give result
+            console.log(result);
+         } 
     }
 }
-// console.error('tableresultat = ' + tableResultat);
