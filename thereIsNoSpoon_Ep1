@@ -1,0 +1,49 @@
+/**
+ * Don't let the machines win. You are humanity's last hope...
+ **/
+const width = parseInt(readline()); // the number of cells on the X axis
+const height = parseInt(readline()); // the number of cells on the Y axis
+let table = [];
+// let tableResultat = [];
+for (let i = 0; i < height; i++) {
+    const line = readline(); // width characters, each either 0 or .
+    table.push(line);
+}
+console.error('table = ' + table)
+for (let i = 0; i < table.length; i++) {
+    for (let j = 0; j < table[i].length; j++) {
+        console.error('évaluation de ' + j + ' '+i);
+        if (table[i][j] == '0') {
+            let resultat = j + ' ' + i + ' ';
+            let a = j + 1;
+            let b = i + 1;
+            console.error('resultat 1 = ' + resultat)
+            if (table[i][a] == '0') {
+                resultat += a + ' ' + i + ' ';
+                console.error('resultat 2 = ' + resultat);
+            } else if (a == table[i].length || table[i][a] !== '0') {
+                resultat += '-1 -1 ';
+                console.error('resultat 2 = ' + resultat);
+            } else  {
+                console.error('erreur sur i & j+1');
+                console.error('resultat 2 = ' + resultat);
+            }
+            
+            if (table[b][j] == '0'){
+                resultat += j + ' ' + b + ' ';
+                console.error('resultat 3 = ' + resultat);
+            } else if (b == table.length || table[b][j] !== '0') {
+                resultat += '-1 -1 ';
+                console.error('resultat 3 = ' + resultat);
+            } else {
+                console.error('erreur sur i+1 & j');
+                console.error('resultat 3 = ' + resultat);
+            }
+            console.log(resultat);
+            // tableResultat.push(resultat);
+        } else {
+            console.error(j +' '+i+' n\'existe pas');
+        }  
+    }
+}
+// console.error('tableresultat = ' + tableResultat);
