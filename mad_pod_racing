@@ -7,7 +7,7 @@
 // game loop
 // pour utiliser boost une seule fois
 let useBoost = true;
-
+// c'est bien la v2?
 while (true) {
     var inputs = readline().split(' ');
     const x = parseInt(inputs[0]);
