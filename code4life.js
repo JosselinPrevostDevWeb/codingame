@@ -142,9 +142,9 @@ while (true) {
     });
 
     // console.error for debug
-    // mySample.forEach(object=>{
-    //     console.error(object);
-    // })
+    mySample.forEach(object=>{
+        console.error(object);
+    })
     // hisSample.forEach(object=>{
     //         console.error("adversaire carrying =");
     //         console.error(object);
@@ -301,30 +301,19 @@ while (true) {
             console.log(goL); // aller à LABORATORY
         break;
         case 5 :
-            // let giveWhatSolution;
+            let giveWhatSolution = 3;
             for (let i in mySample){
-                if (me.storageA>=mySample[i].costA && me.storageB>=mySample[i].costB && me.storageC>=mySample[i].costC && me.storageD>=mySample[i].costD && me.storageE>=mySample[i].costE) {
-                    mySample[i].health+=100;
-                    console.log("CONNECT "+mySample[i].sampleId);
-                    break;
-                } else {
-                    console.log(goD);
-                    break;
+                if (me.storageA >= mySample[i].costA && me.storageB >= mySample[i].costB && me.storageC >= mySample[i].costC && me.storageD >= mySample[i].costD && me.storageE >= mySample[i].costE) {
+                    // console.log("CONNECT "+mySample[i].sampleId);
+                    // break;
+                    giveWhatSolution = i;
                 }
             }
-            // switch (giveWhatSolution) {
-            //     case 0 :
-            //         console.log("CONNECT "+mySample[0].sampleId);
-            //     break;
-            //     case 1 :
-            //         console.log("CONNECT "+mySample[1].sampleId);
-            //     break;
-            //     case 2 :
-            //         console.log("CONNECT "+mySample[2].sampleId);
-            //     break;
-            //     default:
-            //         stage = 0;
-            // }
+            if (giveWhatSolution != 3) {
+                console.log('CONNECT '+mySample[giveWhatSolution].sampleId);
+            } else if (giveWhatSolution == 3) {
+                console.log(goD);
+            }
         break;
         default:
             console.error("erreur de stage");
